@@ -15,6 +15,8 @@ public class DebtTrackerActivity extends BaseDrawerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContent(R.layout.activity_debt_tracker);
+
+
     }
 
 }
