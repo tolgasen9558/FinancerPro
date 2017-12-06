@@ -22,6 +22,10 @@
         <activity
             android:name=".CheckCalculatorActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BaseActivities.DebtTrackerActivity"
+            android:label="@string/title_activity_debt_tracker"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

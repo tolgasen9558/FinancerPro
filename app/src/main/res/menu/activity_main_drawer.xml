@@ -9,6 +9,10 @@
             android:id="@+id/item_check_calculator_activity"
             android:icon="@drawable/ic_launcher_foreground"
             android:title="Check Calculator" />
+        <item
+            android:id="@+id/item_debt_tracker_activity"
+            android:icon="@drawable/ic_launcher_foreground"
+            android:title="Debt Tracker" />
     </group>
 
     <item android:title="Communicate">
