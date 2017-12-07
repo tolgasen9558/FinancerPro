@@ -3,8 +3,8 @@ package com.example.android.financerpro.BaseActivities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.android.financerpro.CheckCalculatorActivity;
-import com.example.android.financerpro.MainActivity;
+import com.example.android.financerpro.Activities.CheckCalculatorActivity;
+import com.example.android.financerpro.Activities.MainActivity;
 import com.example.android.financerpro.R;
 import android.annotation.SuppressLint;
 import android.content.Intent;
