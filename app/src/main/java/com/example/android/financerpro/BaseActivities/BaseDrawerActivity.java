@@ -1,22 +1,23 @@
 package com.example.android.financerpro.BaseActivities;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-import com.example.android.financerpro.Activities.CheckCalculatorActivity;
-import com.example.android.financerpro.Activities.MainActivity;
-import com.example.android.financerpro.R;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+
+import com.example.android.financerpro.Activities.CheckCalculatorActivity;
+import com.example.android.financerpro.Activities.ExpenseTrackerActivity;
+import com.example.android.financerpro.Activities.MainActivity;
+import com.example.android.financerpro.R;
 
 
 @SuppressLint("Registered")
@@ -100,6 +101,8 @@ public class BaseDrawerActivity extends AppCompatActivity
             case R.id.item_check_calculator_activity:
                 loadClass = CheckCalculatorActivity.class;
                 break;
+            case R.id.item_expense_tracker_activity:
+                loadClass = ExpenseTrackerActivity.class;
         }
         drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
