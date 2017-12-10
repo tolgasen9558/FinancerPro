@@ -10,17 +10,12 @@ import android.view.View;
 
 import com.example.android.financerpro.Adapters.ExpenseListAdapter;
 import com.example.android.financerpro.BaseActivities.BaseDrawerActivity;
-import com.example.android.financerpro.ExpenseEntry;
+import com.example.android.financerpro.FinancerAppData;
 import com.example.android.financerpro.Fragments.ExpenseDialogFragment;
 import com.example.android.financerpro.R;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 public class ExpenseTrackerActivity extends BaseDrawerActivity {
 
-    private List<ExpenseEntry> expensesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ExpenseListAdapter mAdapter;
 
@@ -33,31 +28,19 @@ public class ExpenseTrackerActivity extends BaseDrawerActivity {
 
         recyclerView = findViewById(R.id.recyclerview_expenses);
 
-        mAdapter = new ExpenseListAdapter(expensesList);
+        mAdapter = new ExpenseListAdapter();
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
-
-        prepareData();
+        FinancerAppData.getInstance().setExpenseListAdapter(mAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ExpenseDialogFragment().show(getFragmentManager(), "TAG");
+                new ExpenseDialogFragment().show(getSupportFragmentManager(), "TAG");
             }
         });
-    }
-
-
-    private void prepareData(){
-        expensesList.add(new ExpenseEntry("Expense 1", new Date(), "Category 1", 15.5));
-        expensesList.add(new ExpenseEntry("Expense 1", new Date(), "Category 1", 15.5));
-        expensesList.add(new ExpenseEntry("Expense 1", new Date(), "Category 1", 15.5));
-        expensesList.add(new ExpenseEntry("Expense 1", new Date(), "Category 1", 15.5));
-        expensesList.add(new ExpenseEntry("Expense 1", new Date(), "Category 1", 15.5));
-
-        mAdapter.notifyDataSetChanged();
     }
 }

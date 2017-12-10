@@ -1,4 +1,4 @@
-package com.example.android.financerpro;
+package com.example.android.financerpro.DataModels;
 
 
 public class CheckEntry {
@@ -6,6 +6,7 @@ public class CheckEntry {
     private String personPaid;
     private String info;
     private Double amount;
+
 
     public CheckEntry(String personPaid, String info, Double amount) {
         this.personPaid = personPaid;

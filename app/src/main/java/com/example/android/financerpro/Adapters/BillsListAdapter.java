@@ -6,15 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.android.financerpro.CheckEntry;
+import com.example.android.financerpro.DataModels.CheckEntry;
+import com.example.android.financerpro.FinancerAppData;
 import com.example.android.financerpro.R;
-import java.util.List;
+
 import java.util.Locale;
 
 
 public class BillsListAdapter extends RecyclerView.Adapter<BillsListAdapter.MyViewHolder> {
 
-    private List<CheckEntry> checkEntries;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView billInfo, personPaid, amount;
@@ -28,9 +28,6 @@ public class BillsListAdapter extends RecyclerView.Adapter<BillsListAdapter.MyVi
     }
 
 
-    public BillsListAdapter(List<CheckEntry> checkEntries) {
-        this.checkEntries = checkEntries;
-    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,9 +39,10 @@ public class BillsListAdapter extends RecyclerView.Adapter<BillsListAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String name = checkEntries.get(position).getPersonPaid();
-        Double amount = checkEntries.get(position).getAmount();
-        String info = checkEntries.get(position).getInfo();
+        CheckEntry checkEntry = FinancerAppData.getInstance().getCheckEntries().get(position);
+        String name = checkEntry.getPersonPaid();
+        Double amount = checkEntry.getAmount();
+        String info = checkEntry.getInfo();
         holder.personPaid.setText(name);
         holder.amount.setText(String.format(Locale.US, "$ %.2f", amount));
         holder.billInfo.setText(info);
@@ -52,6 +50,6 @@ public class BillsListAdapter extends RecyclerView.Adapter<BillsListAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return checkEntries.size();
+        return FinancerAppData.getInstance().getCheckEntries().size();
     }
 }

@@ -1,25 +1,24 @@
 package com.example.android.financerpro.Activities;
 
 import android.net.Uri;
-import android.support.design.widget.TabLayout;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.Toolbar;
-
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
 
+import com.example.android.financerpro.Adapters.PeopleListAdapter;
 import com.example.android.financerpro.BaseActivities.BaseDrawerActivity;
+import com.example.android.financerpro.Fragments.AddPersonDialogFragment;
 import com.example.android.financerpro.Fragments.BalancesFragment;
 import com.example.android.financerpro.Fragments.BillsFragment;
 import com.example.android.financerpro.Fragments.PeopleFragment;
@@ -35,6 +34,8 @@ public class CheckCalculatorActivity extends BaseDrawerActivity
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private Fragment peopleFragment, billsFragment, balancesFragment;
+    private PeopleListAdapter peopleListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,25 +58,31 @@ public class CheckCalculatorActivity extends BaseDrawerActivity
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        peopleListAdapter = new PeopleListAdapter();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add_check);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AddPersonDialogFragment dialogFragment = new AddPersonDialogFragment();
+                dialogFragment.show(getFragmentManager(), "TAG");
             }
         });
+
 
     }
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PeopleFragment());
-        adapter.addFragment(new BillsFragment());
-        adapter.addFragment(new BalancesFragment());
+        peopleFragment = new PeopleFragment();
+        billsFragment = new BillsFragment();
+        balancesFragment = new BalancesFragment();
+
+        adapter.addFragment(peopleFragment);
+        adapter.addFragment(billsFragment);
+        adapter.addFragment(balancesFragment);
         viewPager.setAdapter(adapter);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

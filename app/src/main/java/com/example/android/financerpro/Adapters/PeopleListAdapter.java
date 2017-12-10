@@ -5,15 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.android.financerpro.FinancerAppData;
 import com.example.android.financerpro.R;
-import java.util.List;
+
 import java.util.Locale;
 
 
 public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.MyViewHolder> {
-
-    private List<String> peopleNames;
-    private List<Double> moneySpentList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, moneySpent;
@@ -26,9 +25,8 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.My
     }
 
 
-    public PeopleListAdapter(List<String> names, List<Double> moneySpent) {
-        this.peopleNames = names;
-        this.moneySpentList = moneySpent;
+    public PeopleListAdapter() {
+
     }
 
     @Override
@@ -41,14 +39,14 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.My
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String name = peopleNames.get(position);
-        Double moneySpent = moneySpentList.get(position);
+        String name = FinancerAppData.getInstance().getPeopleNames().get(position);
+        Double moneySpent = FinancerAppData.getInstance().getMoneySpent(name);
         holder.name.setText(name);
         holder.moneySpent.setText(String.format(Locale.US, "%.2f", moneySpent));
     }
 
     @Override
     public int getItemCount() {
-        return peopleNames.size();
+        return FinancerAppData.getInstance().getPeopleNames().size();
     }
 }

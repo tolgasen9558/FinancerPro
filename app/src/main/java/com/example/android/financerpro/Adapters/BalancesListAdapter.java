@@ -6,16 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.android.financerpro.BalanceEntry;
-import com.example.android.financerpro.CheckEntry;
+import com.example.android.financerpro.DataModels.DebtEntry;
 import com.example.android.financerpro.R;
+
 import java.util.List;
 import java.util.Locale;
 
 
 public class BalancesListAdapter extends RecyclerView.Adapter<BalancesListAdapter.MyViewHolder> {
 
-    private List<BalanceEntry> balanceEntries;
+    private List<DebtEntry> debtEntries;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView personPays, personReceives, amount;
@@ -29,8 +29,8 @@ public class BalancesListAdapter extends RecyclerView.Adapter<BalancesListAdapte
     }
 
 
-    public BalancesListAdapter(List<BalanceEntry> balanceEntries) {
-        this.balanceEntries = balanceEntries;
+    public BalancesListAdapter(List<DebtEntry> debtEntries) {
+        this.debtEntries = debtEntries;
     }
 
     @Override
@@ -43,9 +43,9 @@ public class BalancesListAdapter extends RecyclerView.Adapter<BalancesListAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String personPaysName = balanceEntries.get(position).getPersonPays();
-        Double amount = balanceEntries.get(position).getAmount();
-        String personReceivesName = balanceEntries.get(position).getPersonReceives();
+        String personPaysName = debtEntries.get(position).getPersonPays();
+        Double amount = debtEntries.get(position).getAmount();
+        String personReceivesName = debtEntries.get(position).getPersonReceives();
         holder.personPays.setText(personPaysName);
         holder.amount.setText(String.format(Locale.US, "$ %.2f", amount));
         holder.personReceives.setText(personReceivesName);
@@ -53,6 +53,6 @@ public class BalancesListAdapter extends RecyclerView.Adapter<BalancesListAdapte
 
     @Override
     public int getItemCount() {
-        return balanceEntries.size();
+        return debtEntries.size();
     }
 }

@@ -11,18 +11,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.example.android.financerpro.Adapters.BalancesListAdapter;
-import com.example.android.financerpro.Adapters.BillsListAdapter;
-import com.example.android.financerpro.BalanceEntry;
-import com.example.android.financerpro.CheckEntry;
+import com.example.android.financerpro.DataModels.BalanceEntry;
+import com.example.android.financerpro.DataModels.DebtEntry;
+import com.example.android.financerpro.FinancerAppData;
 import com.example.android.financerpro.R;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class BalancesFragment extends Fragment {
 
-    private List<BalanceEntry> balanceEntries = new ArrayList<>();
+    private List<DebtEntry> debts = new ArrayList<>();
+
     private RecyclerView recyclerView;
     private BalancesListAdapter mAdapter;
     private FrameLayout frameLayout;
@@ -39,11 +44,60 @@ public class BalancesFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    private void prepareData(){
-        balanceEntries.add(new BalanceEntry("Person 1", "Person4", 3.0));
-        balanceEntries.add(new BalanceEntry("Person 2", "Person3", 4.0));
-        balanceEntries.add(new BalanceEntry("Person 3", "Person5", 2.0));
-        balanceEntries.add(new BalanceEntry("Person 4", "Person6", 12.0));
+    private void calculateDebts(){
+        debts.clear();
+        List<BalanceEntry> balanceEntries = new ArrayList<>();
+        List<String> peopleNames = FinancerAppData.getInstance().getPeopleNames();
+        int numPeople = peopleNames.size();
+
+        if (numPeople < 2) {
+            return;
+        }
+
+        //Create balance entry list
+        for(int i = 0; i < numPeople; i++) {
+            String name = peopleNames.get(i);
+            balanceEntries.add(new BalanceEntry(name, FinancerAppData.getInstance().getMoneySpent(name)));
+        }
+
+        //Calculate average amount of checks
+        Double average = 0.0;
+        for (BalanceEntry balanceEntry : balanceEntries) {
+            average += balanceEntry.getAmountPaid() / numPeople;
+        }
+
+        //Set everyone's balance
+        for (BalanceEntry balanceEntry : balanceEntries) {
+            balanceEntry.setBalance(balanceEntry.getAmountPaid() - average);
+        }
+
+        //Sort the list in descending balance order
+        Collections.sort(balanceEntries, new Comparator<BalanceEntry>() {
+            @Override
+            public int compare(BalanceEntry b1, BalanceEntry b2) {
+                return b2.getBalance().compareTo(b1.getBalance());
+            }
+        });
+
+        while (balanceEntries.size() > 1) {
+            BalanceEntry personReceives = balanceEntries.get(0);
+            BalanceEntry personPays = balanceEntries.get(balanceEntries.size() - 1);
+            if(personPays.getBalance() == 0){
+                balanceEntries.remove(personPays);
+                continue;
+            }
+            if(personReceives.getBalance() == 0){
+                balanceEntries.remove(personReceives);
+                continue;
+            }
+
+            Double amountToBePaid;
+            amountToBePaid = Math.min(personReceives.getBalance(), - personPays.getBalance());
+            personReceives.setBalance(personReceives.getBalance() - amountToBePaid);
+            personPays.setBalance(personPays.getBalance() + amountToBePaid);
+            debts.add(new DebtEntry(personPays.getPersonName(), personReceives.getPersonName()
+                    , amountToBePaid));
+        }
 
         mAdapter.notifyDataSetChanged();
     }
@@ -55,20 +109,18 @@ public class BalancesFragment extends Fragment {
         frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_balances, container, false);
         recyclerView = frameLayout.findViewById(R.id.recyclerview_balances);
 
-        mAdapter = new BalancesListAdapter(balanceEntries);
+        mAdapter = new BalancesListAdapter(debts);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(null);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        prepareData();
-        return frameLayout;
-    }
-
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+        calculateDebts();
+        if(mAdapter.getItemCount() == 0){
+            Toast.makeText(getActivity().getApplicationContext(),
+                    "There is no balance to show.", Toast.LENGTH_LONG).show();
         }
+        return frameLayout;
     }
 
     @Override

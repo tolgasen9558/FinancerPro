@@ -13,15 +13,11 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.example.android.financerpro.Adapters.PeopleListAdapter;
+import com.example.android.financerpro.FinancerAppData;
 import com.example.android.financerpro.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PeopleFragment extends Fragment {
 
-    private List<String> peopleNames = new ArrayList<>();
-    private List<Double> moneySpentList = new ArrayList<>();
     private RecyclerView recyclerView;
     private PeopleListAdapter mAdapter;
     private FrameLayout frameLayout;
@@ -39,17 +35,6 @@ public class PeopleFragment extends Fragment {
 
     }
 
-    private void prepareData(){
-        peopleNames.add("Tristan");
-        moneySpentList.add(18.5);
-        peopleNames.add("Tolga");
-        moneySpentList.add(10.5);
-        peopleNames.add("Peter");
-        moneySpentList.add(20.0);
-
-        mAdapter.notifyDataSetChanged();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,21 +42,15 @@ public class PeopleFragment extends Fragment {
         frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_people, container, false);
         recyclerView = frameLayout.findViewById(R.id.recyclerview_check_calculator);
 
-        mAdapter = new PeopleListAdapter(peopleNames, moneySpentList);
+        mAdapter = new PeopleListAdapter();
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(null);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        prepareData();
-        return frameLayout;
-    }
+        FinancerAppData.getInstance().setPeopleListAdapter(mAdapter);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        return frameLayout;
     }
 
     @Override

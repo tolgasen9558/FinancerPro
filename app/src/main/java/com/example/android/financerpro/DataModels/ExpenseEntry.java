@@ -1,4 +1,4 @@
-package com.example.android.financerpro;
+package com.example.android.financerpro.DataModels;
 
 import android.graphics.Bitmap;
 
@@ -13,11 +13,12 @@ public class ExpenseEntry {
     private Bitmap imageBitmap;
     private Double amount;
 
-    public ExpenseEntry(String name, Date date, String category, Double amount) {
+    public ExpenseEntry(String name, Date date, String category, Double amount, Bitmap image) {
         this.name = name;
         this.date = date;
         this.category = category;
         this.amount = amount;
+        this.imageBitmap = image;
     }
 
     public String getName() {

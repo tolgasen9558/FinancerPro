@@ -1,13 +1,13 @@
-package com.example.android.financerpro;
+package com.example.android.financerpro.DataModels;
 
 
-public class BalanceEntry {
+public class DebtEntry {
 
-    private String personPays;
-    private String personReceives;
-    private Double amount;
+    String personPays;
+    String personReceives;
+    Double amount;
 
-    public BalanceEntry(String personPays, String personReceives, Double amount) {
+    public DebtEntry(String personPays, String personReceives, Double amount) {
         this.personPays = personPays;
         this.personReceives = personReceives;
         this.amount = amount;
