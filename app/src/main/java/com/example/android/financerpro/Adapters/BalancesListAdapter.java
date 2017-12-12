@@ -22,9 +22,9 @@ public class BalancesListAdapter extends RecyclerView.Adapter<BalancesListAdapte
 
         public MyViewHolder(View view) {
             super(view);
-            personPays = (TextView) view.findViewById(R.id.tv_balance_person_pays);
-            personReceives = (TextView) view.findViewById(R.id.tv_balance_person_receives);
-            amount = (TextView) view.findViewById(R.id.tv_balance_amount);
+            personPays = view.findViewById(R.id.tv_balance_person_pays);
+            personReceives = view.findViewById(R.id.tv_balance_person_receives);
+            amount = view.findViewById(R.id.tv_balance_amount);
         }
     }
 

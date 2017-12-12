@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.android.financerpro.Adapters.BalancesListAdapter;
 import com.example.android.financerpro.DataModels.BalanceEntry;
@@ -29,6 +29,7 @@ public class BalancesFragment extends Fragment {
     private List<DebtEntry> debts = new ArrayList<>();
 
     private RecyclerView recyclerView;
+    private TextView noBalanceTV;
     private BalancesListAdapter mAdapter;
     private FrameLayout frameLayout;
 
@@ -42,6 +43,48 @@ public class BalancesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_balances, container, false);
+        recyclerView = frameLayout.findViewById(R.id.recyclerview_balances);
+        noBalanceTV = frameLayout.findViewById(R.id.tv_balances_no_balance);
+
+        mAdapter = new BalancesListAdapter(debts);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(null);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+
+        calculateDebts();
+        updateRecyclerViewVisibility();
+
+        return frameLayout;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
     }
 
     private void calculateDebts(){
@@ -102,47 +145,14 @@ public class BalancesFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_balances, container, false);
-        recyclerView = frameLayout.findViewById(R.id.recyclerview_balances);
-
-        mAdapter = new BalancesListAdapter(debts);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(null);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
-
-        calculateDebts();
+    private void updateRecyclerViewVisibility() {
         if(mAdapter.getItemCount() == 0){
-            Toast.makeText(getActivity().getApplicationContext(),
-                    "There is no balance to show.", Toast.LENGTH_LONG).show();
+            noBalanceTV.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.INVISIBLE);
         }
-        return frameLayout;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+        else {
+            noBalanceTV.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
         }
     }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
-
-
 }

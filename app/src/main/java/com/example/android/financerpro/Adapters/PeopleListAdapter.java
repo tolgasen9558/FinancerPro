@@ -19,8 +19,8 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.My
 
         public MyViewHolder(View view) {
             super(view);
-            name = (TextView) view.findViewById(R.id.tv_person_name);
-            moneySpent = (TextView) view.findViewById(R.id.tv_money_spent);
+            name = view.findViewById(R.id.tv_person_name);
+            moneySpent = view.findViewById(R.id.tv_money_spent);
         }
     }
 

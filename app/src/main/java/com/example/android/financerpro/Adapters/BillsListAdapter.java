@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.android.financerpro.DataModels.CheckEntry;
 import com.example.android.financerpro.FinancerAppData;
+import com.example.android.financerpro.Fragments.BillsFragment;
 import com.example.android.financerpro.R;
 
 import java.util.Locale;
@@ -16,18 +17,29 @@ import java.util.Locale;
 public class BillsListAdapter extends RecyclerView.Adapter<BillsListAdapter.MyViewHolder> {
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView billInfo, personPaid, amount;
+    public interface OnItemLongClickListener {
+        boolean onItemLongClicked(int position);
+    }
 
-        public MyViewHolder(View view) {
-            super(view);
-            billInfo = (TextView) view.findViewById(R.id.tv_bill_info);
-            personPaid = (TextView) view.findViewById(R.id.tv_person_paid);
-            amount = (TextView) view.findViewById(R.id.tv_money_amount);
-        }
+    private BillsFragment mFragment;
+
+    public BillsListAdapter(BillsFragment fragment) {
+        mFragment = fragment;
     }
 
 
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView billInfo, personPaid, amount;
+        public View v;
+
+        public MyViewHolder(View view) {
+            super(view);
+            billInfo = view.findViewById(R.id.tv_bill_info);
+            personPaid = view.findViewById(R.id.tv_person_paid);
+            amount = view.findViewById(R.id.tv_money_amount);
+            this.v = view;
+        }
+    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -45,7 +57,22 @@ public class BillsListAdapter extends RecyclerView.Adapter<BillsListAdapter.MyVi
         String info = checkEntry.getInfo();
         holder.personPaid.setText(name);
         holder.amount.setText(String.format(Locale.US, "$ %.2f", amount));
-        holder.billInfo.setText(info);
+        if (info.isEmpty()) {
+            holder.billInfo.setText("---");
+        }
+        else {
+            holder.billInfo.setText(info);
+        }
+
+        final int pos = position;
+
+        holder.v.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mFragment.onItemLongClicked(pos);
+                return true;
+            }
+        });
     }
 
     @Override

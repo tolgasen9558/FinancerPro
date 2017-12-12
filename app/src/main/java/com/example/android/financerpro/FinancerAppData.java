@@ -1,5 +1,7 @@
 package com.example.android.financerpro;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.example.android.financerpro.Adapters.BillsListAdapter;
@@ -15,6 +17,7 @@ import java.util.List;
 
 public class FinancerAppData {
 
+    @SuppressLint("StaticFieldLeak")
     private static FinancerAppData instance = null;
 
     private List<CheckEntry> checkEntries = new ArrayList<>();
@@ -25,6 +28,7 @@ public class FinancerAppData {
     private BillsListAdapter billsListAdapter;
     private ExpenseListAdapter expenseListAdapter;
 
+    private Context context;
 
     protected FinancerAppData() {
         // Exists only to defeat instantiation.
@@ -36,6 +40,12 @@ public class FinancerAppData {
         return instance;
     }
 
+    public void initalise(Context context) {
+        this.context = context;
+//        loadData();
+    }
+
+    //API FUNCTIONS
     public List<CheckEntry> getCheckEntries() {
         return checkEntries;
     }
@@ -62,6 +72,24 @@ public class FinancerAppData {
         expenseListAdapter.notifyDataSetChanged();
     }
 
+    public void deleteBill(int position) {
+        CheckEntry entry = checkEntries.get(position);
+        String name = entry.getPersonPaid();
+        if (moneySpent.containsKey(name)) {
+            moneySpent.put(name, moneySpent.get(name) - entry.getAmount());
+            if (moneySpent.get(name) <= 0) {
+                moneySpent.remove(name);
+            }
+        }
+        checkEntries.remove(position);
+        updateData();
+    }
+
+    public void deleteExpense(int position) {
+        expensesList.remove(position);
+        expenseListAdapter.notifyDataSetChanged();
+    }
+
     public List<String> getPeopleNames() {
         return new ArrayList<>(moneySpent.keySet());
     }
@@ -75,6 +103,24 @@ public class FinancerAppData {
         billsListAdapter.notifyDataSetChanged();
     }
 
+//    private void saveData(){
+//        SharedPreferences sharedPref = context.getSharedPreferences(
+//                PREFERENCE_FILE_KEY, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        for (CheckEntry entry : checkEntries) {
+//            editor.putString(CHECK_PREFIX + entry.getPersonPaid(), entry.getPersonPaid());
+//        }
+//        editor.apply();
+//
+//    }
+//
+//    private void loadData(){
+//
+//    }
+
+
+
+    //Getters and Setters
     public void setPeopleListAdapter(PeopleListAdapter peopleListAdapter) {
         this.peopleListAdapter = peopleListAdapter;
     }
@@ -83,15 +129,23 @@ public class FinancerAppData {
         this.billsListAdapter = billsListAdapter;
     }
 
-    public ExpenseListAdapter getExpenseListAdapter() {
-        return expenseListAdapter;
-    }
-
     public List<ExpenseEntry> getExpensesList() {
         return expensesList;
     }
 
     public void setExpenseListAdapter(ExpenseListAdapter expenseListAdapter) {
         this.expenseListAdapter = expenseListAdapter;
+    }
+
+    public PeopleListAdapter getPeopleListAdapter() {
+        return peopleListAdapter;
+    }
+
+    public BillsListAdapter getBillsListAdapter() {
+        return billsListAdapter;
+    }
+
+    public ExpenseListAdapter getExpenseListAdapter() {
+        return expenseListAdapter;
     }
 }

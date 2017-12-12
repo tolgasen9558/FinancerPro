@@ -1,9 +1,11 @@
 package com.example.android.financerpro.Fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,14 +42,13 @@ public class BillsFragment extends Fragment {
         frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_bills, container, false);
         recyclerView = frameLayout.findViewById(R.id.recyclerview_bills);
 
-        mAdapter = new BillsListAdapter();
+        mAdapter = new BillsListAdapter(this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(null);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
         FinancerAppData.getInstance().setBillsListAdapter(mAdapter);
-
 
         return frameLayout;
     }
@@ -73,5 +74,24 @@ public class BillsFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    public void onItemLongClicked(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        builder// Add action buttons
+                .setMessage("Would you like to delete this bill entry?")
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        FinancerAppData.getInstance().deleteBill(position);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+        builder.create().show();
+    }
 
 }

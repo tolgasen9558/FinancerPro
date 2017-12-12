@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.financerpro.Activities.ExpenseTrackerActivity;
 import com.example.android.financerpro.DataModels.ExpenseEntry;
 import com.example.android.financerpro.FinancerAppData;
 import com.example.android.financerpro.R;
@@ -19,24 +20,30 @@ import java.util.Locale;
 
 public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.MyViewHolder> {
 
+    public interface OnItemLongClickListener {
+        boolean onItemLongClicked(int position);
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView expenseName, expenseDate, expenseCategory, expenseAmount;
         public ImageView expenseIV;
+        public View v;
 
         public MyViewHolder(View view) {
             super(view);
-            expenseName = (TextView) view.findViewById(R.id.tv_expense_name);
-            expenseDate = (TextView) view.findViewById(R.id.tv_expense_date);
-            expenseCategory = (TextView) view.findViewById(R.id.tv_expense_category);
-            expenseAmount = (TextView) view.findViewById(R.id.tv_expense_amount);
-            expenseIV = (ImageView) view.findViewById(R.id.iv_expense_add_photo);
+            expenseName = view.findViewById(R.id.tv_expense_name);
+            expenseDate = view.findViewById(R.id.tv_expense_date);
+            expenseCategory = view.findViewById(R.id.tv_expense_category);
+            expenseAmount = view.findViewById(R.id.tv_expense_amount);
+            expenseIV = view.findViewById(R.id.iv_expense_add_photo);
+            this.v = view;
         }
     }
 
+    ExpenseTrackerActivity mActivity;
 
-    public ExpenseListAdapter() {
-
+    public ExpenseListAdapter(ExpenseTrackerActivity activity) {
+        this.mActivity = activity;
     }
 
     @Override
@@ -61,6 +68,17 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
         holder.expenseCategory.setText(category);
         holder.expenseAmount.setText(String.format(Locale.US, "$ %.2f", amount));
         holder.expenseIV.setImageBitmap(photo);
+
+        final int pos = position;
+
+        holder.v.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mActivity.onItemLongClicked(pos);
+                return true;
+            }
+        });
+
     }
 
     @Override

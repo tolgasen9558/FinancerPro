@@ -1,5 +1,6 @@
-package com.example.android.financerpro.Fragments;
+package com.example.android.financerpro.DialogFragments;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
@@ -20,6 +21,7 @@ public class AddPersonDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
+        @SuppressLint("InflateParams")
         final ConstraintLayout layout = (ConstraintLayout) inflater.inflate(R.layout.dialog_add_person, null);
         final EditText amountET = layout.findViewById(R.id.et_addpersondialog_amount);
         final EditText nameET = layout.findViewById(R.id.et_addperson_name);

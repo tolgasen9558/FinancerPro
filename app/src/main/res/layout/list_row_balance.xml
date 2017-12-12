@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
@@ -14,21 +15,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_balance_person_pays"
-        android:text="Person Name"
+        android:text="@string/placeholder_name"
         android:textAlignment="center"
         android:textSize="18sp"
+        android:textColor="@android:color/holo_red_dark"
         android:layout_weight="1" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow"/>
+        android:src="@drawable/ic_arrow"
+        tools:ignore="ContentDescription" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_balance_person_receives"
         android:textAlignment="center"
-        android:text="Person Paid"
+        android:text="@string/placeholder_name"
+        android:textColor="@android:color/holo_green_dark"
         android:textSize="18sp"
         android:layout_weight="1"/>
 
@@ -37,7 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Amount"
+        android:text="@string/placeholder_amount"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="18sp"
         android:layout_weight="1" />
 

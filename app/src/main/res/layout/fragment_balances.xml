@@ -16,6 +16,17 @@
 
         </android.support.v7.widget.RecyclerView>
 
+
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_balances_no_balance"
+        android:textSize="20sp"
+        android:text="@string/no_balance"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:visibility="invisible"/>
 
 </FrameLayout>

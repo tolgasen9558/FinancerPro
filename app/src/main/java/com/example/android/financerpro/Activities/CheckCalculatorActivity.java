@@ -14,11 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.android.financerpro.Adapters.PeopleListAdapter;
 import com.example.android.financerpro.BaseActivities.BaseDrawerActivity;
-import com.example.android.financerpro.Fragments.AddPersonDialogFragment;
+import com.example.android.financerpro.DialogFragments.AddPersonDialogFragment;
 import com.example.android.financerpro.Fragments.BalancesFragment;
 import com.example.android.financerpro.Fragments.BillsFragment;
 import com.example.android.financerpro.Fragments.PeopleFragment;
@@ -42,25 +41,25 @@ public class CheckCalculatorActivity extends BaseDrawerActivity
         super.onCreate(savedInstanceState);
         setContent(R.layout.activity_check_calculator);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         setupViewPager(mViewPager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
         peopleListAdapter = new PeopleListAdapter();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add_check);
+        FloatingActionButton fab = findViewById(R.id.fab_add_check);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,17 +138,14 @@ public class CheckCalculatorActivity extends BaseDrawerActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_check_calculator, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+            return inflater.inflate(R.layout.fragment_check_calculator, container, false);
         }
     }
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -160,7 +156,7 @@ public class CheckCalculatorActivity extends BaseDrawerActivity
             return mFragmentList.get(position);
         }
 
-        public void addFragment(Fragment fragment) {
+        private void addFragment(Fragment fragment) {
             mFragmentList.add(fragment);
         }
 
