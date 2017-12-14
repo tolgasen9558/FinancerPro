@@ -9,7 +9,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_financer"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,InnerclassSeparator">
@@ -41,6 +41,14 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/picker_provider_paths" />
         </provider>
+        <activity
+            android:name=".BaseActivities.DebtTrackerActivity"
+            android:label="@string/title_activity_debt_tracker"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BaseActivities.ChartViewActivity"
+            android:label="@string/title_chart_view"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

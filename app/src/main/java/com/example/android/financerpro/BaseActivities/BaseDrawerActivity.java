@@ -104,6 +104,12 @@ public class BaseDrawerActivity extends AppCompatActivity
                 break;
             case R.id.item_expense_tracker_activity:
                 loadClass = ExpenseTrackerActivity.class;
+            case R.id.item_debt_tracker_activity:
+                loadClass = DebtTrackerActivity.class;
+                break;
+            case R.id.item_chart_view_activity:
+                loadClass = ChartViewActivity.class;
+                break;
         }
         drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

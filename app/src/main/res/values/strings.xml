@@ -37,4 +37,6 @@
     <string name="category1">Category</string>
     <string name="expense_tracker">Expense Tracker</string>
     <string name="check_calculator">Check Calculator</string>
+    <string name="title_activity_debt_tracker">DebtTrackerActivity</string>
+    <string name="title_chart_view">ChartView</string>
 </resources>
