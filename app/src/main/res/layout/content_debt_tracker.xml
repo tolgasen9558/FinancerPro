@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="55dp"
-    tools:context="com.example.android.financerpro.BaseActivities.DebtTrackerActivity">
+    tools:context="com.example.android.financerpro.Activities.DebtTrackerActivity">
 
     <EditText
         android:id="@+id/edit_query"

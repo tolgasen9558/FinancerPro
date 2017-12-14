@@ -1,4 +1,4 @@
-package com.example.android.financerpro.BaseActivities;
+package com.example.android.financerpro.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,6 +22,9 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.android.financerpro.BaseActivities.BaseDrawerActivity;
+import com.example.android.financerpro.Adapters.MyAdapter;
+import com.example.android.financerpro.DataModels.Debt;
 import com.example.android.financerpro.R;
 
 public class DebtTrackerActivity extends BaseDrawerActivity {

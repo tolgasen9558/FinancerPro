@@ -1,4 +1,4 @@
-package com.example.android.financerpro.BaseActivities;
+package com.example.android.financerpro.DataModels;
 
 /**
  * Created by shellytaylor on 12/12/17.

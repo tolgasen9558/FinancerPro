@@ -1,4 +1,6 @@
-package com.example.android.financerpro.BaseActivities;
+package com.example.android.financerpro.Adapters;
+import com.example.android.financerpro.Activities.DebtTrackerActivity;
+import com.example.android.financerpro.DataModels.Debt;
 import com.example.android.financerpro.R;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

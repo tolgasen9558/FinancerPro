@@ -42,11 +42,11 @@
                 android:resource="@xml/picker_provider_paths" />
         </provider>
         <activity
-            android:name=".BaseActivities.DebtTrackerActivity"
+            android:name=".Activities.DebtTrackerActivity"
             android:label="@string/title_activity_debt_tracker"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".BaseActivities.ChartViewActivity"
+            android:name=".Activities.ChartViewActivity"
             android:label="@string/title_chart_view"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

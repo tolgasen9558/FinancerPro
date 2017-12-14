@@ -1,6 +1,7 @@
 package com.example.android.financerpro.BaseActivities;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -13,9 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
+import com.example.android.financerpro.Activities.ChartViewActivity;
 import com.example.android.financerpro.Activities.CheckCalculatorActivity;
+import com.example.android.financerpro.Activities.DebtTrackerActivity;
 import com.example.android.financerpro.Activities.ExpenseTrackerActivity;
 import com.example.android.financerpro.Activities.MainActivity;
 import com.example.android.financerpro.R;
@@ -43,7 +48,13 @@ public class BaseDrawerActivity extends AppCompatActivity
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                hideSoftKeyKeyboard();
+                super.onDrawerOpened(drawerView);
+            }
+        };
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -54,6 +65,14 @@ public class BaseDrawerActivity extends AppCompatActivity
 
     public void setContent(@LayoutRes int layoutResID) {
         getLayoutInflater().inflate(layoutResID, contentFrame);
+    }
+
+    private void hideSoftKeyKeyboard(){
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     @Override
@@ -104,6 +123,7 @@ public class BaseDrawerActivity extends AppCompatActivity
                 break;
             case R.id.item_expense_tracker_activity:
                 loadClass = ExpenseTrackerActivity.class;
+                break;
             case R.id.item_debt_tracker_activity:
                 loadClass = DebtTrackerActivity.class;
                 break;

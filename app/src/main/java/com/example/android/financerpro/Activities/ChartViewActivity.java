@@ -1,5 +1,7 @@
-package com.example.android.financerpro.BaseActivities;
+package com.example.android.financerpro.Activities;
 
+import com.example.android.financerpro.BaseActivities.BaseDrawerActivity;
+import com.example.android.financerpro.DataModels.ExpenseEntry2;
 import com.example.android.financerpro.R;
 
 import com.github.mikephil.charting.charts.PieChart;
