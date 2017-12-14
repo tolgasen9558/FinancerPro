@@ -7,4 +7,5 @@
     <string name="app_name_extended">Financer Pro</string>
     <string name="app_explanation">Explanation for the application</string>
     <string name="title_activity_debt_tracker">DebtTrackerActivity</string>
+    <string name="title_chart_view">ChartView</string>
 </resources>
