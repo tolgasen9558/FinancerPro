@@ -100,6 +100,12 @@ public class BaseDrawerActivity extends AppCompatActivity
             case R.id.item_check_calculator_activity:
                 loadClass = CheckCalculatorActivity.class;
                 break;
+            case R.id.item_debt_tracker_activity:
+                loadClass = DebtTrackerActivity.class;
+                break;
+            case R.id.item_chart_view_activity:
+                loadClass = ChartViewActivity.class;
+                break;
         }
         drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

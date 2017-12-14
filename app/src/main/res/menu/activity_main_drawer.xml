@@ -7,11 +7,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/item_check_calculator_activity"
-            android:icon="@drawable/ic_launcher_foreground"
+
             android:title="Check Calculator" />
+        <item
+            android:id="@+id/item_debt_tracker_activity"
+            android:icon="@drawable/ic_person"
+            android:title="Debt Tracker" />
+        <item
+            android:id="@+id/item_chart_view_activity"
+            android:icon="@drawable/ic_chart_view"
+            android:title="Chart View" />
+        <item
+            android:id="@+id/temp2"
+
+            android:title="Expense Tracker" />
+        <item
+            android:id="@+id/temp1"
+
+            android:title="Currency Converter" />
     </group>
 
-    <item android:title="Communicate">
+    <!--<item android:title="Communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
@@ -22,6 +38,6 @@
                 android:icon="@drawable/ic_menu_send"
                 android:title="Send" />
         </menu>
-    </item>
+    </item>-->
 
 </menu>
