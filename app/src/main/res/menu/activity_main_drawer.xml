@@ -11,7 +11,7 @@
             android:title="Check Calculator" />
 
         <item
-            android:id="@+id/activity_currency_converter"
+            android:id="@+id/item_activity_currency_convert"
             android:icon="@drawable/ic_launcher_foreground"
             android:title="Currency Converter" />
     </group>
