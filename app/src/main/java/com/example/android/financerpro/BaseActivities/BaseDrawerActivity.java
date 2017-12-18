@@ -1,16 +1,23 @@
 package com.example.android.financerpro.BaseActivities;
 
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+import com.example.android.financerpro.CheckCalculatorActivity;
+import com.example.android.financerpro.CurrencyConverterActivity;
+import com.example.android.financerpro.MainActivity;
+import com.example.android.financerpro.R;
+
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -129,6 +136,9 @@ public class BaseDrawerActivity extends AppCompatActivity
                 break;
             case R.id.item_chart_view_activity:
                 loadClass = ChartViewActivity.class;
+                break;
+            case R.id.item_activity_currency_convert:
+                loadClass = CurrencyConverterActivity.class;
                 break;
         }
         drawer = findViewById(R.id.drawer_layout);

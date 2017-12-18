@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.android.financerpro">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -49,6 +51,12 @@
             android:name=".Activities.ChartViewActivity"
             android:label="@string/title_chart_view"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CurrencyConverterActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".CurrencyConverterActivity2"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
