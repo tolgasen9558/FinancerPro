@@ -19,7 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.android.financerpro.FinancerAppData;
 import com.example.android.financerpro.R;
 import com.vansuita.pickimage.bean.PickResult;

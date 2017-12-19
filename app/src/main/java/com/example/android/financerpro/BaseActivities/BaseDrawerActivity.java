@@ -3,12 +3,8 @@ package com.example.android.financerpro.BaseActivities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.android.financerpro.CheckCalculatorActivity;
 import com.example.android.financerpro.CurrencyConverterActivity;
-import com.example.android.financerpro.MainActivity;
 import com.example.android.financerpro.R;
-
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -24,13 +20,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
-
 import com.example.android.financerpro.Activities.ChartViewActivity;
 import com.example.android.financerpro.Activities.CheckCalculatorActivity;
 import com.example.android.financerpro.Activities.DebtTrackerActivity;
 import com.example.android.financerpro.Activities.ExpenseTrackerActivity;
 import com.example.android.financerpro.Activities.MainActivity;
-import com.example.android.financerpro.R;
 
 
 @SuppressLint("Registered")

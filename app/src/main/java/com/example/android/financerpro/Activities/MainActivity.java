@@ -12,7 +12,7 @@ public class MainActivity extends BaseDrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContent(R.layout.activity_main);
+        setContent(R.layout.activity_mainn);
 
         FinancerAppData.getInstance().initalise(this);
     }

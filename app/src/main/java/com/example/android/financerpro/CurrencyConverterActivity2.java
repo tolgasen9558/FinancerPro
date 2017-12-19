@@ -22,12 +22,11 @@ public class CurrencyConverterActivity2 extends BaseDrawerActivity {
 
         private String currencyName;
         private double currencyRate;
-        private AppCompatActivity mClass;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_converter2);
-            mClass = new AppCompatActivity();
+            setContent(R.layout.activity_converter2);
 
             tvTitle = (TextView) findViewById(R.id.tvTitle);
             tvSubTitle = (TextView) findViewById(R.id.tvSubTitle);

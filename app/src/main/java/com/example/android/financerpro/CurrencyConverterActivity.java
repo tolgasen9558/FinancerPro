@@ -21,14 +21,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CurrencyConverterActivity extends BaseDrawerActivity implements Callback<CurrencyExchange>, CurrencyItemClickListener {
 
     private ListView lvCurrency;
-    private AppCompatActivity mClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_converter);
+        setContent(R.layout.activity_converter);
         lvCurrency = (ListView) findViewById(R.id.lvCurrency);
-        mClass = new AppCompatActivity();
     }
 
     @Override
