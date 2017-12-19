@@ -1,4 +1,4 @@
-package com.example.android.financerpro;
+package com.example.android.financerpro.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.android.financerpro.DataModels.Currency;
+import com.example.android.financerpro.Interfaces.CurrencyItemClickListener;
+import com.example.android.financerpro.R;
 
 import java.util.List;
 

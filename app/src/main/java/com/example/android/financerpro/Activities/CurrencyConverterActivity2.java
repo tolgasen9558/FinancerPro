@@ -1,4 +1,4 @@
-package com.example.android.financerpro;
+package com.example.android.financerpro.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.android.financerpro.BaseActivities.BaseDrawerActivity;
+import com.example.android.financerpro.R;
+
 import java.text.DecimalFormat;
 
 /**

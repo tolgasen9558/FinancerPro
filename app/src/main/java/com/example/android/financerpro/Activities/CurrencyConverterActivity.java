@@ -1,8 +1,14 @@
-package com.example.android.financerpro;
+package com.example.android.financerpro.Activities;
 
+import com.example.android.financerpro.Adapters.CurrencyAdapter;
 import com.example.android.financerpro.BaseActivities.BaseDrawerActivity;
+import com.example.android.financerpro.DataModels.CurrencyExchange;
+import com.example.android.financerpro.DataModels.Currency;
+import com.example.android.financerpro.Interfaces.CurrencyExchangeService;
+import com.example.android.financerpro.Interfaces.CurrencyItemClickListener;
+import com.example.android.financerpro.R;
+
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;

@@ -1,4 +1,4 @@
-package com.example.android.financerpro;
+package com.example.android.financerpro.DataModels;
 
 /**
  * Created by Drystan on 12/13/17.

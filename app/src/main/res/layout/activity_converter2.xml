@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="72dp"
     android:background="#017c8c"
-    tools:context="com.example.android.financerpro.CurrencyConverterActivity2">
+    tools:context="com.example.android.financerpro.Activities.CurrencyConverterActivity2">
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"

@@ -52,10 +52,10 @@
             android:label="@string/title_chart_view"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CurrencyConverterActivity"
+            android:name=".Activities.CurrencyConverterActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".CurrencyConverterActivity2"
+            android:name=".Activities.CurrencyConverterActivity2"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

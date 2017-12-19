@@ -1,7 +1,7 @@
-package com.example.android.financerpro;
+package com.example.android.financerpro.Interfaces;
 
 
-import com.example.android.financerpro.BaseActivities.BaseDrawerActivity;
+import com.example.android.financerpro.DataModels.CurrencyExchange;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

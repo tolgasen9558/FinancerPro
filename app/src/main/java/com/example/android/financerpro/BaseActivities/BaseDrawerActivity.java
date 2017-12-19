@@ -3,7 +3,7 @@ package com.example.android.financerpro.BaseActivities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.android.financerpro.CurrencyConverterActivity;
+import com.example.android.financerpro.Activities.CurrencyConverterActivity;
 import com.example.android.financerpro.R;
 import android.annotation.SuppressLint;
 import android.content.Context;

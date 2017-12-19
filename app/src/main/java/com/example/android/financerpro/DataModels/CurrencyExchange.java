@@ -1,4 +1,6 @@
-package com.example.android.financerpro;
+package com.example.android.financerpro.DataModels;
+
+import com.example.android.financerpro.DataModels.Currency;
 
 import java.util.ArrayList;
 import java.util.List;
